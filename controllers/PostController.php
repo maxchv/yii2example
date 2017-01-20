@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\BlogUser;
+use app\models\Category;
 use Yii;
 use app\models\Post;
 use yii\data\ActiveDataProvider;
@@ -64,12 +66,16 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
+        $categories = Category::find()->all();
+        $authors = BlogUser::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categories' => $categories,
+                'authors' => $authors
             ]);
         }
     }

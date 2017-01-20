@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,7 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <!-- $form->field($model, 'category_id')->textInput() -->
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($categories, 'id', 'title')) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 
@@ -24,7 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated')->textInput() ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <!-- $form->field($model, 'user_id')->textInput() -->
+    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map($authors, 'id', 'nickname')) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
