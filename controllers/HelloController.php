@@ -12,7 +12,7 @@ use yii\web\Controller;
 
 class HelloController extends Controller
 {
-    public function actionGreeting() {
-        return "Hello World";
+    public function actionGreeting($msg = "Hello") {
+        return $this->render('index', ["msg" => $msg]);
     }
 }
