@@ -89,12 +89,16 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $categories = Category::find()->all();
+        $authors = BlogUser::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'categories' => $categories,
+                'authors' => $authors
             ]);
         }
     }
