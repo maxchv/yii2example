@@ -9,14 +9,23 @@ use yii\grid\GridView;
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-index">
+<div class="post-index col-sm-8">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <?php
+        foreach ($dataProvider->models as $post) {
+            echo $this->render('shortView', [
+               'model' => $post
+            ]);
+        }
+    ?>
+
+    <!--p>
         <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+
+    < GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -29,9 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
             // 'created',
             // 'updated',
-            // 'user_id',
+            'user.nickname',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); -->
 </div>
