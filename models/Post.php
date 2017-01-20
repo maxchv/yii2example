@@ -42,7 +42,7 @@ class Post extends \yii\db\ActiveRecord
             [['created', 'updated'], 'safe'],
             [['title'], 'string', 'max' => 128],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => BlogUser::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -84,6 +84,6 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(BlogUser::className(), ['id' => 'user_id']);
     }
 }
